@@ -32,15 +32,16 @@ hr {
 
 a {
   color: #fff;
+  text-decoration: none;
 }
-a:link {
+a.unitsLink:link {
   font-size: 26px;
   color: #fff;
   text-decoration: none;
   transition: all 200ms ease-in-out;
 }
 
-a:hover {
+a.unitsLink:hover {
   color: #fff;
   text-decoration: none;
   font-size: 30px;
@@ -199,4 +200,14 @@ a:hover {
   bottom: 18px;
   color: #fff;
   padding-right: 30px;
+}
+
+.personalInf {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #fff;
+  text-shadow: #7f909a 1px 0 10px;
+  font-family: "Inconsolata", monospace;
+  font-weight: 600;
+  padding-left: 30px;
 }
