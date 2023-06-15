@@ -1,0 +1,202 @@
+body {
+  background-image: url(../lightsky.jpg);
+  background-color: transparent;
+  background-size: cover;
+}
+
+h1 {
+  font-family: "WindSong", cursive;
+  font-size: 38px;
+  color: #fff;
+  padding: 10px;
+  line-height: 2;
+}
+
+button {
+  background: rgb(127, 144, 154, 0.9);
+  color: #fff;
+  border: 0px #7f909a solid;
+  padding: 5px 10px 7px 10px;
+  word-wrap: normal;
+  border-radius: 10px;
+  line-height: 1.5;
+  margin: 0 5px;
+  display: block;
+  box-shadow: rgb(127, 144, 154, 0.8) 1px 0 7px;
+  font-family: "Inconsolata", monospace;
+}
+
+hr {
+  border: 1.5px #fff solid;
+}
+
+a {
+  color: #fff;
+}
+a:link {
+  font-size: 26px;
+  color: #fff;
+  text-decoration: none;
+  transition: all 200ms ease-in-out;
+}
+
+a:hover {
+  color: #fff;
+  text-decoration: none;
+  font-size: 30px;
+}
+
+.inputText {
+  line-height: 2;
+  border: 1px #7f909a solid;
+  width: 50%;
+  max-width: 100%;
+  box-shadow: rgb(127, 144, 154, 0.8) 1px 0 7px;
+  font-family: "Inconsolata", monospace;
+}
+
+.inputSearch {
+  background: rgb(127, 144, 154, 0.9);
+  color: #fff;
+  border: 0px #7f909a solid;
+  padding: 5px 10px 7px 10px;
+  word-wrap: normal;
+  border-radius: 10px;
+  line-height: 1.5;
+  box-shadow: rgb(127, 144, 154, 0.8) 1px 0 7px;
+  font-family: "Inconsolata", monospace;
+}
+.location {
+  font-size: 52px;
+  line-height: 1.5;
+  color: #fff;
+  text-shadow: #7f909a 1px 0 10px;
+  font-family: "Inconsolata", monospace;
+  font-weight: 600;
+  padding-left: 30px;
+}
+.temperature {
+  font-size: 52px;
+  line-height: 1.5;
+  color: #fff;
+  text-shadow: #7f909a 1px 0 10px;
+  font-family: "Inconsolata", monospace;
+  font-weight: 600;
+}
+
+.dateSpan {
+  font-size: 26px;
+  line-height: 1;
+  color: #fff;
+  text-shadow: #7f909a 1px 0 10px;
+  font-family: "Inconsolata", monospace;
+  font-weight: 600;
+  padding-left: 30px;
+}
+.weatherDescription {
+  font-size: 26px;
+  line-height: 1;
+  color: #fff;
+  text-shadow: #7f909a 1px 0 10px;
+  font-family: "Inconsolata", monospace;
+  font-weight: 600;
+  padding-right: 30px;
+}
+
+.mainInfWrap {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.currentInf {
+  font-size: 24px;
+  line-height: 1.5;
+  background: #8cb7cb;
+  border: 1px solid #8cb7cb;
+  border-radius: 16px;
+  color: #fff;
+  padding: 30px 0;
+  text-shadow: #7f909a 1px 0 10px;
+  font-family: "Inconsolata", monospace;
+  box-shadow: rgb(127, 144, 154, 0.8) 1px 0 7px;
+}
+.timeDiv {
+  font-family: "Inconsolata", monospace;
+  text-shadow: #7f909a 1px 0 10px;
+}
+.card {
+  border: 0px;
+  word-wrap: normal;
+  background-color: transparent;
+  font-family: "Inconsolata", monospace;
+}
+.forecastTitle {
+  font-size: 24px;
+  line-height: 1.5;
+  color: #fff;
+  padding: 20px 0 20px 30px;
+  text-shadow: #7f909a 1px 0 10px;
+  font-family: "Inconsolata", monospace;
+  font-weight: 600;
+}
+
+.days {
+  background: #8cb7cb;
+  color: #fff;
+  border: 1px solid #8cb7cb;
+  border-radius: 16px;
+  font-family: "Inconsolata", monospace;
+  text-align: center;
+  box-shadow: rgb(127, 144, 154, 0.8) 1px 0 7px;
+  margin-bottom: 15px;
+}
+
+.row {
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+.myIconMain {
+  font-size: 52px;
+  color: #fff;
+  position: relative;
+  top: 10px;
+  left: 10px;
+}
+.myIcon {
+  font-size: 18px;
+  color: #fff;
+  position: relative;
+  top: 2px;
+  margin-left: 2px;
+}
+
+.myIconDays {
+  text-align: center;
+  font-size: 36px;
+  color: #fff;
+  padding: 15px auto;
+}
+
+.maxMinTemp {
+  display: block;
+}
+.weatherDescriptionCard {
+  display: block;
+  margin-top: 2px;
+}
+.hrUnder {
+  margin-bottom: 0;
+}
+.hrAbove {
+  margin-top: 0;
+}
+.units {
+  font-size: 26px;
+  margin-top: 0;
+  padding-top: 0;
+  position: relative;
+  bottom: 18px;
+  color: #fff;
+  padding-right: 30px;
+}
