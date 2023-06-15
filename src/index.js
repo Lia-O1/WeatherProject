@@ -1,3 +1,37 @@
+function getCurrentDayTime() {
+  let currentDayTime = new Date();
+  var weekday = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  var hours = currentDayTime.getHours();
+  var minutes = currentDayTime.getMinutes();
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  var ampm = hours >= 12 ? "PM" : "AM";
+
+  if (hours <= 12) {
+    hours = hours;
+  } else {
+    hours = hours - 12;
+  }
+  var currentTime = `${hours}:${minutes}${ampm}`;
+  var currentDay = weekday[currentDayTime.getDay()];
+  var currentDate = currentDayTime.getDate();
+  let theDay = document.querySelector("#current-day");
+  theDay.innerHTML = currentDay;
+  let theDate = document.querySelector("#current-date");
+  theDate.innerHTML = currentDate;
+  let theTime = document.querySelector("#current-time");
+  theTime.innerHTML = currentTime;
+  setTimeout(getCurrentDayTime, 500);
+}
+getCurrentDayTime();
 function showTemp(response) {
   let temperature = Math.round(response.data.main.temp);
   let currentTemp = document.querySelector("#current-temp");
