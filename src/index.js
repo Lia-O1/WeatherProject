@@ -32,11 +32,12 @@ function getCurrentDayTime() {
   setTimeout(getCurrentDayTime, 500);
 }
 getCurrentDayTime();
+
 function showTemp(response) {
-  let temperature = Math.round(response.data.main.temp);
+  celsiusTemp = response.data.main.temp;
+  let temperature = Math.round(celsiusTemp);
   let currentTemp = document.querySelector("#current-temp");
   currentTemp.innerHTML = `${temperature}`;
-  console.log(response);
 }
 
 function showHumidity(response) {
@@ -127,14 +128,20 @@ searchForm.addEventListener("submit", searchCity);
 function convertToC(event) {
   event.preventDefault();
   let temp = document.querySelector("#current-temp");
-  temp.innerHTML = 20;
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  temp.innerHTML = Math.round(celsiusTemp);
 }
 function convertToF(event) {
   event.preventDefault();
   let temp = document.querySelector("#current-temp");
-  temp.innerHTML = 64;
+  let fTemp = celsiusTemp * (9 / 5) + 32;
+  fahrenheitLink.classList.add("active");
+  celsiusLink.classList.remove("active");
+  temp.innerHTML = Math.round(fTemp);
 }
 
+let celsiusTemp = null;
 let celsiusLink = document.querySelector("#celsius-link");
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 celsiusLink.addEventListener("click", convertToC);
