@@ -34,6 +34,7 @@ function getCurrentDayTime() {
 getCurrentDayTime();
 
 function showTemp(response) {
+  console.log(response.data);
   celsiusTemp = response.data.main.temp;
   let temperature = Math.round(celsiusTemp);
   let currentTemp = document.querySelector("#current-temp");
@@ -47,11 +48,12 @@ function showHumidity(response) {
 }
 
 function showDescription(response) {
-  let description = response.data.weather[0].main;
+  let description = response.data.weather[0].description;
   let currentDescription = document.querySelector(
-    "#current-weather-desctiption"
+    "#current-weather-description"
   );
-  currentDescription.innerHTML = `${description}`;
+  currentDescription.innerHTML =
+    description[0].toUpperCase() + description.slice(1);
 }
 function showWind(response) {
   let wind = Math.round(response.data.wind.speed);
@@ -94,8 +96,6 @@ function handleWeather(response) {
 }
 
 function showPosition(position) {
-  console.log(position.coords.latitude);
-  console.log(position.coords.longitude);
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   let apiKey = "cb9ed4dc19bec04ed529a19979e84dce";
