@@ -85,6 +85,40 @@ function showLocation(response) {
     userLocation.innerHTML = `${usersLocation}`;
   });
 }
+
+function showIcon(response) {
+  let descriptionIcon = response.data.weather[0].icon;
+  let iconElement = document.querySelector(".myIconMain");
+  if (descriptionIcon === "01d") {
+    iconElement.classList.add("lni");
+    iconElement.classList.add("lni-sun");
+  }
+  if (descriptionIcon === "03d" || "03n" || "04d" || "03n") {
+    iconElement.classList.add("lni");
+    iconElement.classList.add("lni-cloud");
+  }
+  if (descriptionIcon === "02d" || "02n") {
+    iconElement.classList.add("lni");
+    iconElement.classList.add("lni-cloudy-sun");
+  }
+  if (descriptionIcon === "11d") {
+    iconElement.classList.add("lni");
+    iconElement.classList.add("lni-thunder");
+  }
+  if (descriptionIcon === "09d" || "09n" || "10d" || "10n") {
+    iconElement.classList.add("lni");
+    iconElement.classList.add("lni-rain");
+  }
+  if (descriptionIcon === "50d") {
+    iconElement.classList.add("fa-solid");
+    iconElement.classList.add("fa-bars-staggered");
+  }
+  if (descriptionIcon === "13d") {
+    iconElement.classList.add("fa-regular");
+    iconElement.classList.add("fa-snowflake");
+  }
+}
+
 function handleWeather(response) {
   showTemp(response);
   showHumidity(response);
@@ -93,6 +127,7 @@ function handleWeather(response) {
   showPrecipitation(response);
   showFeelsLike(response);
   showLocation(response);
+  showIcon(response);
 }
 
 function showPosition(position) {
