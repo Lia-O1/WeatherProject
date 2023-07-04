@@ -89,15 +89,21 @@ function showLocation(response) {
 function showIcon(response) {
   let descriptionIcon = response.data.weather[0].icon;
   let iconElement = document.querySelector(".myIconMain");
+  iconElement.classList = "myIconMain";
   if (descriptionIcon === "01d") {
     iconElement.classList.add("lni");
     iconElement.classList.add("lni-sun");
   }
-  if (descriptionIcon === "03d" || "03n" || "04d" || "03n") {
+  if (
+    descriptionIcon === "03d" ||
+    descriptionIcon === "03n" ||
+    descriptionIcon === "04d" ||
+    descriptionIcon === "03n"
+  ) {
     iconElement.classList.add("lni");
     iconElement.classList.add("lni-cloud");
   }
-  if (descriptionIcon === "02d" || "02n") {
+  if (descriptionIcon === "02d" || descriptionIcon === "02n") {
     iconElement.classList.add("lni");
     iconElement.classList.add("lni-cloudy-sun");
   }
@@ -105,7 +111,12 @@ function showIcon(response) {
     iconElement.classList.add("lni");
     iconElement.classList.add("lni-thunder");
   }
-  if (descriptionIcon === "09d" || "09n" || "10d" || "10n") {
+  if (
+    descriptionIcon === "09d" ||
+    descriptionIcon === "09n" ||
+    descriptionIcon === "10d" ||
+    descriptionIcon === "10n"
+  ) {
     iconElement.classList.add("lni");
     iconElement.classList.add("lni-rain");
   }
