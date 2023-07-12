@@ -57,17 +57,17 @@ function showDescription(response) {
 function showWind(response) {
   let wind = Math.round(response.data.wind.speed);
   let currentWind = document.querySelector("#current-wind");
-  currentWind.innerHTML = `${wind}m/s`;
+  currentWind.innerHTML = `${wind} m/s`;
 }
 
 function showPrecipitation(response) {
   var precipitation;
   let currentPrecip = document.querySelector("#current-precipitation");
   if (precipitation === undefined) {
-    currentPrecip.innerHTML = `0mm`;
+    currentPrecip.innerHTML = `0 mm`;
   } else {
     let precipitation = response.data.rain[0];
-    currentPrecip.innerHTML = `${precipitation}mm`;
+    currentPrecip.innerHTML = `${precipitation} mm`;
   }
 }
 
@@ -150,9 +150,46 @@ function forecastDescription(forecastDay) {
   return currentDescription;
 }
 
+function formatIcon(forecastDay) {
+  let descriptionIcon = forecastDay.weather[0].icon;
+  let iconElement = "";
+  if (descriptionIcon === "01d") {
+    iconElement = `<i class="myIconDays lni lni-sun"></i>`;
+  }
+  if (
+    descriptionIcon === "03d" ||
+    descriptionIcon === "03n" ||
+    descriptionIcon === "04d" ||
+    descriptionIcon === "03n"
+  ) {
+    iconElement = `<i class="myIconDays lni lni-cloud"></i>`;
+  }
+  if (descriptionIcon === "02d" || descriptionIcon === "02n") {
+    iconElement = `<i class="myIconDays lni lni-cloudy-sun"> </i>`;
+  }
+  if (descriptionIcon === "11d") {
+    iconElement = `<i class="myIconDays lni lni-thunder"></i>`;
+  }
+  if (
+    descriptionIcon === "09d" ||
+    descriptionIcon === "09n" ||
+    descriptionIcon === "10d" ||
+    descriptionIcon === "10n"
+  ) {
+    iconElement = `<i class="myIconDays lni lni-rain"></i>`;
+  }
+  if (descriptionIcon === "50d") {
+    iconElement = `<i class="myIconDays fa-solid fa-bars-staggered"></i>`;
+  }
+  if (descriptionIcon === "13d") {
+    iconElement = `<i class="myIconDays fa-regular fa-snowflake"></i>`;
+  }
+  return iconElement;
+}
+
 function showForecast(response) {
-  console.log(response);
   let forecast = response.data.daily;
+  console.log(forecast);
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row mx-auto">`;
   forecast.forEach(function (forecastDay, index) {
@@ -164,14 +201,14 @@ function showForecast(response) {
               <div class="card-body days">
                 <h5 class="card-title">${formatDay(forecastDay.dt)}</h5>
                 <hr />
-                <p class="card-text">
-                  <i class="myIconDays"></i>
+                <p class="card-text"> ${formatIcon(forecastDay)}
+                  
                   <span class="weatherDescriptionCard">${forecastDescription(
                     forecastDay
                   )}</span>
                   <span class="maxMinTemp">${Math.round(
                     forecastDay.temp.max
-                  )}° /${Math.round(forecastDay.temp.min)}°</span>
+                  )}° / ${Math.round(forecastDay.temp.min)}°</span>
                 </p>
               </div>
             </div>
