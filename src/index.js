@@ -34,7 +34,6 @@ function getCurrentDayTime() {
 getCurrentDayTime();
 
 function showTemp(response) {
-  console.log(response.data);
   celsiusTemp = response.data.main.temp;
   let temperature = Math.round(celsiusTemp);
   let currentTemp = document.querySelector("#current-temp");
@@ -129,6 +128,67 @@ function showIcon(response) {
     iconElement.classList.add("fa-snowflake");
   }
 }
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  return days[day];
+}
+
+function forecastDescription(forecastDay) {
+  let description = forecastDay.weather[0].description;
+  let currentDescription = description[0].toUpperCase() + description.slice(1);
+  return currentDescription;
+}
+
+function showForecast(response) {
+  console.log(response);
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row mx-auto">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-lg-2">
+            <div class="card h-100">
+              <div class="card-body days">
+                <h5 class="card-title">${formatDay(forecastDay.dt)}</h5>
+                <hr />
+                <p class="card-text">
+                  <i class="myIconDays"></i>
+                  <span class="weatherDescriptionCard">${forecastDescription(
+                    forecastDay
+                  )}</span>
+                  <span class="maxMinTemp">${Math.round(
+                    forecastDay.temp.max
+                  )}° /${Math.round(forecastDay.temp.min)}°</span>
+                </p>
+              </div>
+            </div>
+          </div>`;
+    }
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function handleForecast(response) {
+  let lat = response.data.coord.lat;
+  let lon = response.data.coord.lon;
+  let apiKey = "b35c686ba9565ba0ab254c2230937552";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(`${apiUrl}`).then(showForecast);
+}
 
 function handleWeather(response) {
   showTemp(response);
@@ -139,6 +199,7 @@ function handleWeather(response) {
   showFeelsLike(response);
   showLocation(response);
   showIcon(response);
+  handleForecast(response);
 }
 
 function showPosition(position) {
@@ -153,9 +214,6 @@ function userCurrentLocation() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
-let locationButton = document.querySelector("#current-location-main");
-locationButton.addEventListener("click", userCurrentLocation);
-
 function searchLocation(city) {
   let apiKey = "cb9ed4dc19bec04ed529a19979e84dce";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -168,8 +226,6 @@ function searchCity(event) {
   let city = `${searchInput.value}`;
   searchLocation(city);
 }
-let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", searchCity);
 
 function convertToC(event) {
   event.preventDefault();
@@ -193,4 +249,10 @@ let fahrenheitLink = document.querySelector("#fahrenheit-link");
 celsiusLink.addEventListener("click", convertToC);
 fahrenheitLink.addEventListener("click", convertToF);
 
-searchLocation("Melbourne");
+let locationButton = document.querySelector("#current-location-main");
+locationButton.addEventListener("click", userCurrentLocation);
+
+let searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", searchCity);
+
+searchLocation("Carlton");
