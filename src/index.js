@@ -261,17 +261,30 @@ function userCurrentLocation() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
-function searchLocation(city) {
+function searchCity(city) {
   let apiKey = "cb9ed4dc19bec04ed529a19979e84dce";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(`${apiUrl}`).then(handleWeather);
 }
 
-function searchCity(event) {
+function searchCityCountry(city, country) {
+  let apiKey = "cb9ed4dc19bec04ed529a19979e84dce";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${apiKey}&units=metric`;
+  axios.get(`${apiUrl}`).then(handleWeather);
+}
+
+function searchLocation(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#user-input");
-  let city = `${searchInput.value}`;
-  searchLocation(city);
+  let userInput = `${searchInput.value}`;
+  if (userInput.trim().indexOf(" ") != -1) {
+    let words = userInput.split(" ");
+    let city = words[0];
+    let country = words[1];
+    searchCityCountry(city, country);
+  } else {
+    searchCity(userInput);
+  }
 }
 
 function convertToC(event) {
@@ -300,6 +313,6 @@ let locationButton = document.querySelector("#current-location-main");
 locationButton.addEventListener("click", userCurrentLocation);
 
 let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", searchCity);
+searchForm.addEventListener("submit", searchLocation);
 
-searchLocation("London");
+searchCity("London");
