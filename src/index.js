@@ -40,7 +40,7 @@ function showPrecipitation(response) {
 function showFeelsLike(response) {
   let feelslike = Math.round(response.data.main.feels_like);
   let currentFeelsLike = document.querySelector("#current-feelslike");
-  currentFeelsLike.innerHTML = `${feelslike}`;
+  currentFeelsLike.innerHTML = `${feelslike}°C`;
 }
 
 function showLocation(response) {
@@ -63,7 +63,7 @@ function showIcon(response) {
     descriptionIcon === "03d" ||
     descriptionIcon === "03n" ||
     descriptionIcon === "04d" ||
-    descriptionIcon === "03n"
+    descriptionIcon === "04n"
   ) {
     iconElement.classList.add("lni");
     iconElement.classList.add("lni-cloud");
@@ -195,14 +195,11 @@ function handleForecast(response) {
 function showTime(response) {
   let currentDayTime = new Date();
   let timeShift = response.data.timezone;
-  console.log(timeShift);
   let offset = timeShift / 3600;
-  console.log(offset);
   let utcTime =
     currentDayTime.getTime() + currentDayTime.getTimezoneOffset() * 60000;
   let time = utcTime + 3600000 * offset;
   let cityTime = new Date(time);
-  console.log(cityTime);
 
   var weekday = [
     "Sunday",
@@ -281,7 +278,11 @@ function searchLocation(event) {
     let words = userInput.split(" ");
     let city = words[0];
     let country = words[1];
-    searchCityCountry(city, country);
+    if (country.length < 3) {
+      searchCityCountry(city, country);
+    } else {
+      searchCity(userInput);
+    }
   } else {
     searchCity(userInput);
   }
