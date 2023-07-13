@@ -1,39 +1,5 @@
-function getCurrentDayTime() {
-  let currentDayTime = new Date();
-  var weekday = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
-  var hours = currentDayTime.getHours();
-  var minutes = currentDayTime.getMinutes();
-  minutes = minutes < 10 ? "0" + minutes : minutes;
-  var ampm = hours >= 12 ? "PM" : "AM";
-
-  if (hours <= 12) {
-    hours = hours;
-  } else {
-    hours = hours - 12;
-  }
-  var currentTime = `${hours}:${minutes}${ampm}`;
-  var currentDay = weekday[currentDayTime.getDay()];
-  var currentDate = currentDayTime.getDate();
-  let theDay = document.querySelector("#current-day");
-  theDay.innerHTML = currentDay;
-  let theDate = document.querySelector("#current-date");
-  theDate.innerHTML = currentDate;
-  let theTime = document.querySelector("#current-time");
-  theTime.innerHTML = currentTime;
-  setTimeout(getCurrentDayTime, 500);
-}
-getCurrentDayTime();
-
 function showTemp(response) {
+  console.log(response);
   celsiusTemp = response.data.main.temp;
   let temperature = Math.round(celsiusTemp);
   let currentTemp = document.querySelector("#current-temp");
@@ -189,7 +155,6 @@ function formatIcon(forecastDay) {
 
 function showForecast(response) {
   let forecast = response.data.daily;
-  console.log(forecast);
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row mx-auto">`;
   forecast.forEach(function (forecastDay, index) {
@@ -227,6 +192,50 @@ function handleForecast(response) {
   axios.get(`${apiUrl}`).then(showForecast);
 }
 
+function showTime(response) {
+  let currentDayTime = new Date();
+  let timeShift = response.data.timezone;
+  console.log(timeShift);
+  let offset = timeShift / 3600;
+  console.log(offset);
+  let utcTime =
+    currentDayTime.getTime() + currentDayTime.getTimezoneOffset() * 60000;
+  let time = utcTime + 3600000 * offset;
+  let cityTime = new Date(time);
+  console.log(cityTime);
+
+  var weekday = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  var hours = cityTime.getHours();
+  var minutes = cityTime.getMinutes();
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  var ampm = hours >= 12 ? "PM" : "AM";
+
+  if (hours <= 12) {
+    hours = hours;
+  } else {
+    hours = hours - 12;
+  }
+  var currentTime = `${hours}:${minutes}${ampm}`;
+  var currentDay = weekday[cityTime.getDay()];
+  var currentDate = cityTime.getDate();
+  let theDay = document.querySelector("#current-day");
+  theDay.innerHTML = currentDay;
+  let theDate = document.querySelector("#current-date");
+  theDate.innerHTML = currentDate;
+  let theTime = document.querySelector("#current-time");
+  theTime.innerHTML = currentTime;
+  setTimeout(showTime, 500);
+}
+
 function handleWeather(response) {
   showTemp(response);
   showHumidity(response);
@@ -237,6 +246,7 @@ function handleWeather(response) {
   showLocation(response);
   showIcon(response);
   handleForecast(response);
+  showTime(response);
 }
 
 function showPosition(position) {
@@ -292,4 +302,4 @@ locationButton.addEventListener("click", userCurrentLocation);
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", searchCity);
 
-searchLocation("Carlton");
+searchLocation("London");
