@@ -126,7 +126,7 @@ function formatIcon(forecastDay) {
     descriptionIcon === "03d" ||
     descriptionIcon === "03n" ||
     descriptionIcon === "04d" ||
-    descriptionIcon === "03n"
+    descriptionIcon === "04n"
   ) {
     iconElement = `<i class="myIconDays lni lni-cloud"></i>`;
   }
@@ -158,7 +158,7 @@ function showForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row mx-auto">`;
   forecast.forEach(function (forecastDay, index) {
-    if (index < 6) {
+    if (index > 0 && index < 7) {
       forecastHTML =
         forecastHTML +
         `<div class="col-lg-2">
