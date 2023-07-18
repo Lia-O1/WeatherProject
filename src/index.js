@@ -51,6 +51,12 @@ function showLocation(response) {
   });
 }
 
+function showCountry(response) {
+  let country = response.data.sys.country;
+  let currentCountry = document.querySelector("#users-location-country");
+  currentCountry.innerHTML = `${country}`;
+}
+
 function showIcon(response) {
   let descriptionIcon = response.data.weather[0].icon;
   let iconElement = document.querySelector(".myIconMain");
@@ -241,6 +247,7 @@ function handleWeather(response) {
   showPrecipitation(response);
   showFeelsLike(response);
   showLocation(response);
+  showCountry(response);
   showIcon(response);
   handleForecast(response);
   showTime(response);
