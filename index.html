@@ -40,7 +40,7 @@
     <div class="container">
       <h1 class="text-center">Wt</h1>
       <div class="row">
-        <div class="col-7">
+        <div class="col-8">
           <form id="search-form">
             <input
               type="search"
@@ -59,15 +59,16 @@
             />
           </form>
         </div>
-        <div class="col-5 d-flex flex-row-reverse my-col-location">
+        <div class="col-4 d-flex flex-row-reverse my-col-location">
           <button class="btn-currentLocation" id="current-location-main">
-            Current Location
+            <span class="d-none d-sm-inline">My location</span
+            ><i class="lni lni-map-marker locaton-icon d-sm-none"></i>
           </button>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-8 mainInfWrap">
+        <div class="col-md-6 mainInfWrap">
           <span class="location">
             <span id="users-location"></span>,
             <span id="users-location-country"></span>
@@ -78,11 +79,11 @@
             <span id="current-date"></span>
           </span>
         </div>
-        <div class="col-md-4 text-end mainInfWrap">
+        <div class="col-md-6 text-end mainInfWrap">
           <span class="temperature">
             <i class="myIconMain" id="current-icon"></i>
-            <span id="current-temp"></span>
-            <span class="units"
+            <span id="current-temp"></span
+            ><span class="units"
               ><a href="#" id="celsius-link" class="unitsLink active">°C</a>|<a
                 href="#"
                 id="fahrenheit-link"
@@ -148,7 +149,7 @@
         <div class="forecastTitle">Daily Forecast</div>
         <div id="forecast"></div>
       </div>
-      <span class="personalInf">
+      <span class="personalInf d-none d-md-inline">
         <a href="https://github.com/Lia-O1/WeatherProject">Open-sourced</a> by
         Olha Stepko
       </span>
