@@ -1,7 +1,12 @@
+:root {
+  --box-shadow: rgb(127, 144, 154, 0.8) 1px 0 7px;
+  --text-shadow: #7f909a 1px 0 10px;
+  --primary-color: #8cb7cb;
+}
 body {
   background-image: url(../lightsky.jpg);
-  background-color: transparent;
   background-size: cover;
+  font-family: "Inconsolata", monospace;
 }
 
 h1 {
@@ -22,8 +27,7 @@ button {
   line-height: 1.5;
   margin: 0 5px;
   display: block;
-  box-shadow: rgb(127, 144, 154, 0.8) 1px 0 7px;
-  font-family: "Inconsolata", monospace;
+  box-shadow: var(--box-shadow);
 }
 
 hr {
@@ -40,8 +44,7 @@ a {
   border: 1px #7f909a solid;
   width: 50%;
   max-width: 100%;
-  box-shadow: rgb(127, 144, 154, 0.8) 1px 0 7px;
-  font-family: "Inconsolata", monospace;
+  box-shadow: var(--box-shadow);
 }
 
 .inputSearch {
@@ -52,15 +55,13 @@ a {
   word-wrap: normal;
   border-radius: 10px;
   line-height: 1.5;
-  box-shadow: rgb(127, 144, 154, 0.8) 1px 0 7px;
-  font-family: "Inconsolata", monospace;
+  box-shadow: var(--box-shadow);
 }
 .location {
   font-size: 52px;
   line-height: 1.5;
   color: #fff;
-  text-shadow: #7f909a 1px 0 10px;
-  font-family: "Inconsolata", monospace;
+  text-shadow: var(--text-shadow);
   font-weight: 600;
   padding-left: 30px;
 }
@@ -68,8 +69,7 @@ a {
   font-size: 52px;
   line-height: 1.5;
   color: #fff;
-  text-shadow: #7f909a 1px 0 10px;
-  font-family: "Inconsolata", monospace;
+  text-shadow: var(--text-shadow);
   font-weight: 600;
 }
 
@@ -77,8 +77,7 @@ a {
   font-size: 26px;
   line-height: 1;
   color: #fff;
-  text-shadow: #7f909a 1px 0 10px;
-  font-family: "Inconsolata", monospace;
+  text-shadow: var(--text-shadow);
   font-weight: 600;
   padding-left: 30px;
 }
@@ -86,8 +85,7 @@ a {
   font-size: 26px;
   line-height: 1;
   color: #fff;
-  text-shadow: #7f909a 1px 0 10px;
-  font-family: "Inconsolata", monospace;
+  text-shadow: var(--text-shadow);
   font-weight: 600;
   padding-right: 30px;
 }
@@ -100,43 +98,38 @@ a {
 .currentInf {
   font-size: 24px;
   line-height: 1.5;
-  background: #8cb7cb;
-  border: 1px solid #8cb7cb;
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
   border-radius: 16px;
   color: #fff;
   padding: 30px 0;
-  text-shadow: #7f909a 1px 0 10px;
-  font-family: "Inconsolata", monospace;
-  box-shadow: rgb(127, 144, 154, 0.8) 1px 0 7px;
+  text-shadow: var(--text-shadow);
+  box-shadow: var(--box-shadow);
 }
 .timeDiv {
-  font-family: "Inconsolata", monospace;
-  text-shadow: #7f909a 1px 0 10px;
+  text-shadow: var(--text-shadow);
 }
 .card {
   border: 0px;
   word-wrap: normal;
   background-color: transparent;
-  font-family: "Inconsolata", monospace;
 }
 .forecastTitle {
   font-size: 24px;
   line-height: 1.5;
   color: #fff;
   padding: 20px 0 20px 30px;
-  text-shadow: #7f909a 1px 0 10px;
-  font-family: "Inconsolata", monospace;
+  text-shadow: var(--text-shadow);
   font-weight: 600;
 }
 
 .days {
-  background: #8cb7cb;
+  background: var(--primary-color);
   color: #fff;
-  border: 1px solid #8cb7cb;
+  border: 1px solid var(--primary-color);
   border-radius: 16px;
-  font-family: "Inconsolata", monospace;
   text-align: center;
-  box-shadow: rgb(127, 144, 154, 0.8) 1px 0 7px;
+  box-shadow: var(--box-shadow);
   margin-bottom: 15px;
 }
 
@@ -193,8 +186,7 @@ a {
   font-size: 12px;
   line-height: 1.5;
   color: #fff;
-  text-shadow: #7f909a 1px 0 10px;
-  font-family: "Inconsolata", monospace;
+  text-shadow: var(--text-shadow);
   font-weight: 600;
   padding-left: 30px;
 }
