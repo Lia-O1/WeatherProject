@@ -322,5 +322,4 @@ locationButton.addEventListener("click", userCurrentLocation);
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", searchLocation);
-
 searchCity("London");
