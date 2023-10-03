@@ -1,5 +1,4 @@
 function showTemp(response) {
-  console.log(response);
   celsiusTemp = response.data.main.temp;
   let temperature = Math.round(celsiusTemp);
   let currentTemp = document.querySelector("#current-temp");
@@ -27,13 +26,19 @@ function showWind(response) {
 }
 
 function showPrecipitation(response) {
-  var precipitation;
-  let currentPrecip = document.querySelector("#current-precipitation");
+  let precipitation = response.data.rain;
+  let currentPrecipitation = document.querySelector("#current-precipitation");
   if (precipitation === undefined) {
-    currentPrecip.innerHTML = `0 mm`;
+    currentPrecipitation.innerHTML = `0 mm`;
   } else {
-    let precipitation = response.data.rain[0];
-    currentPrecip.innerHTML = `${precipitation} mm`;
+    for (let prop in precipitation) {
+      if (precipitation[prop] === undefined) {
+        currentPrecipitation.innerHTML = `0 mm`;
+      } else {
+        let precipitationValue = precipitation[prop];
+        currentPrecipitation.innerHTML = `${precipitationValue} mm`;
+      }
+    }
   }
 }
 
@@ -45,10 +50,8 @@ function showFeelsLike(response) {
 
 function showLocation(response) {
   let usersLocation = response.data.name;
-  let currentUsersLocation = document.querySelectorAll("#users-location");
-  currentUsersLocation.forEach(function (userLocation) {
-    userLocation.innerHTML = `${usersLocation}`;
-  });
+  let currentUsersLocation = document.querySelector("#users-location");
+  currentUsersLocation.innerHTML = `${usersLocation}`;
 }
 
 function showCountry(response) {
@@ -236,7 +239,6 @@ function showTime(response) {
   theDate.innerHTML = currentDate;
   let theTime = document.querySelector("#current-time");
   theTime.innerHTML = currentTime;
-  setTimeout(showTime, 500);
 }
 
 function handleWeather(response) {
