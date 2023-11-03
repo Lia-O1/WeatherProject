@@ -283,7 +283,7 @@ function searchLocation(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#user-input");
   let userInput = `${searchInput.value}`;
-  if (userInput.trim().indexOf(" ") != -1) {
+  if (userInput.trim().indexOf(" ") !== -1) {
     let words = userInput.split(" ");
     let city = words[0];
     let country = words[1];
